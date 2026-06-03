@@ -335,10 +335,54 @@ img { max-width: 100%; display: block; }
   opacity: 1;
 }
 
-.accent--all { --accent-grad: var(--gradient-rgb); }
-.accent--r   { --accent-grad: linear-gradient(90deg in oklch, #ff2d2d, #ff8a1a, #ff2db4); }
-.accent--g   { --accent-grad: linear-gradient(90deg in oklch, #2bd36b, #1ed5d5, #2bd36b); }
-.accent--b   { --accent-grad: linear-gradient(90deg in oklch, #2d6bff, #8a2dff, #4ab0ff); }
+.accent--all {
+  --accent-grad: var(--gradient-rgb);
+  --accent-blurb-grad: linear-gradient(135deg in oklch, #1a1a18, #2d6bff);
+}
+.accent--r {
+  --accent-grad: linear-gradient(90deg in oklch, #ff2d2d, #ff8a1a, #ff2db4);
+  --accent-blurb-grad: linear-gradient(135deg in oklch, #064f3f, #2bd36b);
+}
+.accent--g {
+  --accent-grad: linear-gradient(90deg in oklch, #2bd36b, #1ed5d5, #2bd36b);
+  --accent-blurb-grad: linear-gradient(135deg in oklch, #5a0820, #ff2d2d);
+}
+.accent--b {
+  --accent-grad: linear-gradient(90deg in oklch, #2d6bff, #8a2dff, #4ab0ff);
+  --accent-blurb-grad: linear-gradient(135deg in oklch, #5a3500, #ff8a1a);
+}
+
+/* Corner-attached blurb that pops out on hover */
+.accent-blurb {
+  position: absolute;
+  top: calc(100% - 12px);
+  left: calc(100% - 36px);
+  width: clamp(220px, 28vw, 320px);
+  padding: 14px 18px;
+  background: var(--accent-blurb-grad);
+  border-radius: var(--r-sm);
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  -webkit-background-clip: border-box;
+          background-clip: border-box;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 14px 32px -12px rgba(0,0,0,0.4);
+}
+
+.accent:hover .accent-blurb,
+.accent:focus-visible .accent-blurb {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 .hero-cta {
   display: inline-block;
@@ -1107,6 +1151,7 @@ img { max-width: 100%; display: block; }
   .mobile-menu { display: flex; }
 
   /* Hero + statement */
+  .accent-blurb { display: none; }
   .hero { padding: 48px 0 40px; }
   .hero-logo { width: clamp(220px, 88vw, 720px); }
   .hero-statement {
