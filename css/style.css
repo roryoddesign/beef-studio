@@ -222,10 +222,9 @@ img { max-width: 100%; display: block; }
 /* Big colored statement under the logo */
 .hero-statement {
   font-family: var(--font-serif);
-  font-style: italic;
   font-weight: 400;
   font-size: clamp(36px, 6vw, 96px);
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.01em;
   max-width: 26ch;
   margin: clamp(96px, 14vh, 200px) 0 56px;
@@ -236,8 +235,8 @@ img { max-width: 100%; display: block; }
 .accent {
   position: relative;
   display: inline-block;
-  padding: 0 0.14em;
-  margin: 0 -0.14em;
+  padding: 0 0.16em;
+  margin: 0 -0.16em;
   background-image: var(--accent-grad, var(--gradient-rgb));
   background-size: 200% 100%;
   background-position: 0% 50%;
@@ -245,22 +244,18 @@ img { max-width: 100%; display: block; }
           background-clip: text;
   -webkit-text-fill-color: transparent;
           color: transparent;
-  transition: -webkit-text-fill-color 0.22s var(--ease),
-              color 0.22s var(--ease);
   z-index: 0;
 }
 
 .accent::before {
   content: "";
   position: absolute;
-  inset: 0.08em 0 0.04em;
+  inset: -0.08em 0 -0.04em;
   background-image: var(--accent-grad, var(--gradient-rgb));
   background-size: 200% 100%;
   background-position: 0% 50%;
-  border-radius: 0.08em;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.4s var(--ease);
+  border-radius: 0.1em;
+  opacity: 0;
   z-index: -1;
 }
 
@@ -268,20 +263,17 @@ img { max-width: 100%; display: block; }
 .accent:focus-visible {
   -webkit-text-fill-color: #fff;
           color: #fff;
+  font-style: italic;
 }
 .accent:hover::before,
 .accent:focus-visible::before {
-  transform: scaleX(1);
+  opacity: 1;
 }
 
 .accent--all { --accent-grad: var(--gradient-rgb); }
 .accent--r   { --accent-grad: linear-gradient(90deg in oklch, #ff2d2d, #ff8a1a, #ff2db4); }
 .accent--g   { --accent-grad: linear-gradient(90deg in oklch, #2bd36b, #1ed5d5, #2bd36b); }
 .accent--b   { --accent-grad: linear-gradient(90deg in oklch, #2d6bff, #8a2dff, #4ab0ff); }
-
-@media (prefers-reduced-motion: reduce) {
-  .accent, .accent::before { transition: none; }
-}
 
 .hero-cta {
   display: inline-block;
