@@ -535,27 +535,28 @@ img { max-width: 100%; display: block; }
 
 .view-toggle {
   display: inline-flex;
-  gap: 0;
+  gap: 4px;
+  align-items: center;
 }
 .view-toggle button {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   background: none;
   border: 0;
-  padding: 6px 10px;
+  padding: 6px;
   margin: 0;
   color: var(--fg-muted);
   cursor: pointer;
-  border-bottom: 1px solid transparent;
-  transition: color 0.18s var(--ease), border-color 0.18s var(--ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.18s var(--ease), background-color 0.18s var(--ease);
 }
 .view-toggle button:hover { color: var(--fg); }
 .view-toggle button[aria-pressed="true"] {
   color: var(--fg);
-  border-bottom-color: var(--fg);
+  background-color: rgba(127, 127, 127, 0.18);
 }
+.view-toggle button svg { display: block; }
 
 /* ---------- Selected work: hero view (default), grid, list ---------- */
 .case-features {
