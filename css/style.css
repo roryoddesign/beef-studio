@@ -263,7 +263,6 @@ img { max-width: 100%; display: block; }
 .accent:focus-visible {
   -webkit-text-fill-color: #fff;
           color: #fff;
-  font-style: italic;
 }
 .accent:hover::before,
 .accent:focus-visible::before {
@@ -673,32 +672,51 @@ img { max-width: 100%; display: block; }
 
 .about-cta-inline { margin-top: 36px; }
 
-.about-photo { padding-top: 48px; }
+.about-photo { padding-top: 0; }
 
-.about-photo-placeholder {
+.about-hero-cover {
+  position: relative;
+  display: block;
   width: 100%;
-  aspect-ratio: 3 / 4;
-  background: var(--card-bg);
-  border: 1px solid var(--rule);
+  aspect-ratio: 16 / 9;
   border-radius: var(--r-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 25% 30%, #ff2db4 0%, transparent 48%),
+    radial-gradient(circle at 78% 68%, #2d6bff 0%, transparent 52%),
+    radial-gradient(circle at 55% 18%, #ffd400 0%, transparent 56%),
+    radial-gradient(circle at 38% 82%, #2bd36b 0%, transparent 50%),
+    radial-gradient(circle at 88% 28%, #1ed5d5 0%, transparent 52%),
+    linear-gradient(125deg, #8a2dff 0%, #ff2d2d 55%, #ff8a1a 100%);
+  background-size: 220% 220%, 220% 220%, 260% 260%, 260% 260%, 220% 220%, 200% 200%;
+  background-position: 0% 0%, 100% 100%, 50% 50%, 50% 50%, 0% 100%, 0% 0%;
+  animation: ebb 28s ease-in-out infinite alternate;
+  transition: filter 0.3s var(--ease);
 }
 
-.about-photo-mark {
-  width: 100%;
-  aspect-ratio: 3851 / 1012;
-  background: var(--gradient-rgb);
-  background-size: 200% 100%;
-  -webkit-mask: url("/beef_logo/beef_logo.png") center / contain no-repeat;
-          mask: url("/beef_logo/beef_logo.png") center / contain no-repeat;
-  animation: rgb-pan 14s linear infinite;
+.about-hero-cover:hover { filter: brightness(1.08); }
+
+.about-hero-cover-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 72%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: exclusion;
+  /* Force the near-white PNG to pure white for clean exclusion */
+  filter: brightness(0) invert(1);
+  pointer-events: none;
+}
+
+@keyframes ebb {
+  0%   { background-position: 0% 0%,    100% 100%, 50% 50%, 50% 50%, 0% 100%, 0% 0%; }
+  50%  { background-position: 70% 40%,  30% 60%,   30% 70%, 70% 30%, 60% 30%, 50% 50%; }
+  100% { background-position: 100% 100%, 0% 0%,    70% 30%, 30% 70%, 100% 0%, 100% 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .about-photo-mark { animation: none; }
+  .about-hero-cover { animation: none; }
 }
 
 .about-capabilities-label {
