@@ -301,8 +301,8 @@ img { max-width: 100%; display: block; }
 .accent {
   position: relative;
   display: inline-block;
-  padding: 0 0.16em;
-  margin: 0 -0.16em;
+  padding: 0 0.08em;
+  margin: 0 -0.08em;
   background-image: var(--accent-grad, var(--gradient-rgb));
   background-size: 200% 100%;
   background-position: 0% 50%;
@@ -316,12 +316,12 @@ img { max-width: 100%; display: block; }
 .accent::before {
   content: "";
   position: absolute;
-  inset: -0.08em 0 -0.04em;
+  inset: 0.05em 0 0.05em;
   background-image: var(--accent-grad, var(--gradient-rgb));
   background-size: 100vw 100vh;
   background-position: 0 0;
   background-attachment: fixed;
-  border-radius: 0.1em;
+  border-radius: 0.08em;
   opacity: 0;
   z-index: -1;
 }
@@ -344,12 +344,12 @@ img { max-width: 100%; display: block; }
 /* Corner-attached blurb — top-left meets the block's bottom-right
    at a single point. Same accent gradient. */
 .accent:has(.accent-blurb)::before {
-  border-radius: 0.1em 0.1em 0 0.1em;
+  border-radius: 0.08em 0.08em 0 0.08em;
 }
 
 .accent-blurb {
   position: absolute;
-  top: 100%;
+  top: calc(100% - 0.05em);
   left: 100%;
   width: clamp(240px, 26vw, 320px);
   padding: 16px 20px;
