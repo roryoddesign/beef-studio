@@ -65,8 +65,15 @@
       <hr class="grad-rule">
 
       <section class="section">
-        <p class="section-label">Selected work</p>
-        <div class="case-features">
+        <div class="section-head">
+          <p class="section-label">Selected work</p>
+          <div class="view-toggle" role="group" aria-label="Change work view">
+            <button type="button" data-view="hero" aria-pressed="true">Hero</button>
+            <button type="button" data-view="grid" aria-pressed="false">Grid</button>
+            <button type="button" data-view="list" aria-pressed="false">List</button>
+          </div>
+        </div>
+        <div class="case-features" data-view="hero">
           <a class="case-feature" href="/work/mont-cime.html">
             <div class="case-feature-thumb case-feature-thumb--mc" role="img" aria-label="Mont Cime placeholder hero"></div>
             <div class="case-feature-info">

@@ -34,6 +34,21 @@
     });
   }
 
+  // Selected work view toggle: Hero / Grid / List
+  var viewToggle = document.querySelector('.view-toggle');
+  var caseGrid   = document.querySelector('.case-features');
+  if (viewToggle && caseGrid) {
+    viewToggle.addEventListener('click', function (e) {
+      var btn = e.target.closest('button[data-view]');
+      if (!btn) return;
+      var view = btn.getAttribute('data-view');
+      caseGrid.setAttribute('data-view', view);
+      viewToggle.querySelectorAll('button').forEach(function (b) {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+    });
+  }
+
   // Mobile menu (hamburger + full-screen overlay)
   var hamburger = document.getElementById('hamburger');
   var mobileMenu = document.getElementById('mobile-menu');

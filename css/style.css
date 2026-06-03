@@ -383,21 +383,42 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-cta {
+  position: relative;
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 14px 22px;
-  border: 1px solid var(--fg);
-  border-radius: var(--r-pill);
-  transition: transform 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--gradient-rgb);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: var(--fg);
+          color: var(--fg);
+  transition: -webkit-text-fill-color 0.18s var(--ease), color 0.18s var(--ease);
 }
-.hero-cta:hover {
-  background: var(--fg);
-  color: var(--bg);
-  transform: translateY(-1px);
+.hero-cta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: var(--gradient-rgb);
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.18s var(--ease);
 }
+.hero-cta:hover,
+.hero-cta:focus-visible {
+  -webkit-text-fill-color: transparent;
+          color: transparent;
+}
+.hero-cta:hover::after,
+.hero-cta:focus-visible::after { opacity: 1; }
 
 /* ---------- RGB gradient utilities ---------- */
 .grad-text {
@@ -417,12 +438,13 @@ img { max-width: 100%; display: block; }
 }
 
 .grad-rule {
-  height: 2px;
+  height: 6px;
   border: 0;
   background: var(--gradient-rgb);
   background-size: 200% 100%;
   animation: rgb-pan 14s linear infinite;
   margin: 0;
+  border-radius: 3px;
 }
 
 @keyframes rgb-pan {
@@ -501,7 +523,41 @@ img { max-width: 100%; display: block; }
   font-variation-settings: "wdth" 100;
 }
 
-/* ---------- Selected work: stacked full-width features ---------- */
+/* ---------- Section head with view toggle ---------- */
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.section-head .section-label { margin: 0; }
+
+.view-toggle {
+  display: inline-flex;
+  gap: 0;
+}
+.view-toggle button {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: none;
+  border: 0;
+  padding: 6px 10px;
+  margin: 0;
+  color: var(--fg-muted);
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease);
+}
+.view-toggle button:hover { color: var(--fg); }
+.view-toggle button[aria-pressed="true"] {
+  color: var(--fg);
+  border-bottom-color: var(--fg);
+}
+
+/* ---------- Selected work: hero view (default), grid, list ---------- */
 .case-features {
   display: flex;
   flex-direction: column;
@@ -570,6 +626,91 @@ img { max-width: 100%; display: block; }
   max-width: 56ch;
   margin: 0;
   color: rgba(255,255,255,0.92);
+}
+
+/* Grid view: 3-col, square thumbs, info below */
+.case-features[data-view="grid"] {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.case-features[data-view="grid"] .case-feature {
+  overflow: visible;
+}
+.case-features[data-view="grid"] .case-feature-thumb {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-sm);
+}
+.case-features[data-view="grid"] .case-feature-info {
+  position: static;
+  background: none;
+  opacity: 1;
+  padding: 14px 0 0;
+  color: var(--fg);
+}
+.case-features[data-view="grid"] .case-feature-info .case-meta {
+  color: var(--fg-muted);
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+.case-features[data-view="grid"] .case-feature-info h3 {
+  font-size: clamp(22px, 2.4vw, 30px);
+  color: var(--fg);
+  margin-bottom: 8px;
+  line-height: 1;
+}
+.case-features[data-view="grid"] .case-feature-info .case-blurb {
+  color: var(--fg-muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* List view: text-only rows, title left, blurb right */
+.case-features[data-view="list"] {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+.case-features[data-view="list"] .case-feature {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    "title blurb"
+    "meta  blurb";
+  column-gap: 32px;
+  row-gap: 4px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--rule);
+  overflow: visible;
+  align-items: baseline;
+}
+.case-features[data-view="list"] .case-feature-thumb { display: none; }
+.case-features[data-view="list"] .case-feature-info { display: contents; }
+.case-features[data-view="list"] .case-feature-info h3 {
+  grid-area: title;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3.6vw, 44px);
+  letter-spacing: -0.015em;
+  line-height: 1;
+  color: var(--fg);
+  margin: 0;
+}
+.case-features[data-view="list"] .case-feature-info .case-meta {
+  grid-area: meta;
+  color: var(--fg-muted);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  margin: 0;
+}
+.case-features[data-view="list"] .case-feature-info .case-blurb {
+  grid-area: blurb;
+  color: var(--fg-muted);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 56ch;
 }
 
 /* ---------- Case study cards (used for cross-links on case pages) ---------- */
@@ -1162,6 +1303,15 @@ img { max-width: 100%; display: block; }
 
   /* Case features: stack info below the thumb instead of overlay */
   .case-features { gap: 28px; }
+  .section-head { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+  .view-toggle { align-self: flex-start; }
+  .case-features[data-view="grid"] { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .case-features[data-view="list"] .case-feature {
+    grid-template-columns: 1fr;
+    grid-template-areas: "title" "meta" "blurb";
+    gap: 6px;
+    padding: 18px 0;
+  }
   .case-feature { overflow: visible; }
   .case-feature-thumb { border-radius: var(--r-sm); }
   .case-feature-info {
