@@ -134,6 +134,14 @@ img { max-width: 100%; display: block; }
   font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+}
+
+.mark-logo {
+  display: block;
+  height: 24px;
+  width: auto;
 }
 
 .nav {
@@ -198,12 +206,29 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-h1 {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(72px, 14vw, 220px);
-  line-height: 0.92;
-  letter-spacing: -0.015em;
   margin: 0 0 28px;
+  line-height: 0;
+}
+
+.hero-logo {
+  display: block;
+  width: clamp(280px, 80vw, 1100px);
+  aspect-ratio: 3851 / 1012;
+  background: var(--gradient-rgb);
+  background-size: 200% 100%;
+  -webkit-mask-image: url("/beef_logo/beef_logo.png");
+          mask-image: url("/beef_logo/beef_logo.png");
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-position: left center;
+          mask-position: left center;
+  animation: rgb-pan 14s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo { animation: none; }
 }
 
 .hero-sub {
