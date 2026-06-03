@@ -153,7 +153,7 @@ img { max-width: 100%; display: block; }
 .nav-link {
   font-family: var(--font-mono);
   font-weight: 400;
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   line-height: 1;
@@ -210,48 +210,20 @@ img { max-width: 100%; display: block; }
   line-height: 0;
 }
 
-/* Full-bleed hero: ebbing colorful gradient with the Beef mark
-   overlaid via mix-blend-mode: exclusion */
-.hero-cover {
-  position: relative;
+/* Rainbow gradient clipped to the Beef logo silhouette */
+.hero-logo {
   display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: var(--r-sm);
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 25% 30%, #ff2db4 0%, transparent 48%),
-    radial-gradient(circle at 78% 68%, #2d6bff 0%, transparent 52%),
-    radial-gradient(circle at 55% 18%, #ffd400 0%, transparent 56%),
-    radial-gradient(circle at 38% 82%, #2bd36b 0%, transparent 50%),
-    radial-gradient(circle at 88% 28%, #1ed5d5 0%, transparent 52%),
-    linear-gradient(125deg, #8a2dff 0%, #ff2d2d 55%, #ff8a1a 100%);
-  background-size: 220% 220%, 220% 220%, 260% 260%, 260% 260%, 220% 220%, 200% 200%;
-  background-position: 0% 0%, 100% 100%, 50% 50%, 50% 50%, 0% 100%, 0% 0%;
-  animation: ebb 28s ease-in-out infinite alternate;
-}
-
-.hero-cover-mark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 72%;
-  height: auto;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: exclusion;
-  /* Force the near-white PNG to pure white for clean exclusion */
-  filter: brightness(0) invert(1);
-  pointer-events: none;
-}
-
-@keyframes ebb {
-  0%   { background-position: 0% 0%,    100% 100%, 50% 50%, 50% 50%, 0% 100%, 0% 0%; }
-  50%  { background-position: 70% 40%,  30% 60%,   30% 70%, 70% 30%, 60% 30%, 50% 50%; }
-  100% { background-position: 100% 100%, 0% 0%,    70% 30%, 30% 70%, 100% 0%, 100% 100%; }
+  width: clamp(280px, 80vw, 1100px);
+  aspect-ratio: 3851 / 1012;
+  background: var(--gradient-rgb);
+  background-size: 200% 100%;
+  -webkit-mask: url("/beef_logo/beef_logo.png") left center / contain no-repeat;
+          mask: url("/beef_logo/beef_logo.png") left center / contain no-repeat;
+  animation: rgb-pan 14s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-cover { animation: none; }
+  .hero-logo { animation: none; }
 }
 
 /* Big colored statement under the logo */
@@ -428,7 +400,78 @@ img { max-width: 100%; display: block; }
   font-variation-settings: "wdth" 100;
 }
 
-/* ---------- Case study cards ---------- */
+/* ---------- Selected work: stacked full-width features ---------- */
+.case-features {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.case-feature {
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+
+.case-feature-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-size: 200% 200%;
+}
+
+.case-feature-thumb--mc   { background-image: linear-gradient(135deg in oklch, #ff2d2d, #ff8a1a, #ffd400, #ff2db4); }
+.case-feature-thumb--dd   { background-image: linear-gradient(135deg in oklch, #2bd36b, #1ed5d5, #2d6bff); }
+.case-feature-thumb--void { background-image: linear-gradient(135deg in oklch, #2d6bff, #8a2dff, #ff2db4); }
+
+.case-feature-info {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(20px, 4vw, 48px);
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0) 100%);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+}
+
+.case-feature:hover .case-feature-info,
+.case-feature:focus-visible .case-feature-info { opacity: 1; }
+
+.case-feature-info .case-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+  margin: 0 0 10px;
+}
+
+.case-feature-info h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 84px);
+  letter-spacing: -0.015em;
+  line-height: 0.95;
+  margin: 0 0 14px;
+  color: #fff;
+}
+
+.case-feature-info .case-blurb {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 56ch;
+  margin: 0;
+  color: rgba(255,255,255,0.92);
+}
+
+/* ---------- Case study cards (used for cross-links on case pages) ---------- */
 .case-grid {
   display: grid;
   gap: 32px;
@@ -953,6 +996,8 @@ img { max-width: 100%; display: block; }
   .capability-tags li { font-size: 16px; padding: 4px 0; }
   .team-grid { gap: 10px; }
   .team-info { opacity: 1; transform: none; } /* on touch, no hover — always show */
+  .case-features { gap: 32px; }
+  .case-feature-info { opacity: 1; } /* on touch, hover-reveal flattens to always-show */
 }
 
 /* ---------- Custom cursor ---------- */
