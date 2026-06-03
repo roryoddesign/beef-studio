@@ -1,61 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — Beef Studio</title>
-  <meta name="description" content="About Beef Studio — a boutique design studio in Boston.">
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="About Beef Studio — a creative consultancy in Boston.">
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('beef-theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="site-nav" aria-label="Primary">
-      <a class="site-logo" href="/">Beef Studio</a>
+  <div class="site">
+    <header class="top">
+      <a class="mark" href="/">Beef Studio</a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">Menu</button>
-      <ul class="nav-list" id="nav-list">
-        <li><a href="/">Home</a></li>
-        <li><a href="/work.html">Work</a></li>
-        <li><a href="/about.html" aria-current="page">About</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+      <nav class="nav" id="nav-list" aria-label="Primary">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/work.html">Work</a>
+        <a class="nav-link" href="/about.html" aria-current="page">About</a>
+        <a class="nav-link" href="/contact.html">Contact</a>
+        <button class="toggle" id="theme-toggle" aria-label="Toggle light and dark mode" aria-pressed="false">
+          <span class="toggle-knob"></span>
+        </button>
+      </nav>
+    </header>
 
-  <main class="site-main">
-    <section class="page-intro">
-      <h1>About</h1>
-      <p class="lede">Placeholder intro about the studio — who we are, what we believe, how we work.</p>
-    </section>
+    <main>
+      <section class="page-intro">
+        <h1><span class="grad-text">About</span></h1>
+        <p class="lede">A creative consultancy that elevates your brand, marketing, and systems.</p>
+      </section>
 
-    <section class="about-body">
-      <h2>The studio</h2>
-      <p>Placeholder paragraph about the studio's origins, location, and ethos. Beef Studio is based in Boston and works with clients across the US and beyond.</p>
+      <hr class="grad-rule">
 
-      <h2>How we work</h2>
-      <p>Placeholder paragraph about process — research, strategy, design, build. Small team, deep collaboration, long-term partnerships.</p>
+      <section class="section about-body">
+        <p class="section-label">The studio</p>
+        <p>Placeholder copy — Beef Studio is a small Boston-based creative consultancy. We work with founders, marketing teams, and other agencies to shape identity, build websites, and put systems in place that hold up at scale.</p>
+        <p>Placeholder copy — small team, long-running engagements, work we'd put our name on.</p>
+      </section>
 
-      <h2>People</h2>
-      <ul class="people-list">
-        <li>Founder — placeholder name</li>
-        <li>Designer — placeholder name</li>
-        <li>Developer — placeholder name</li>
-      </ul>
+      <section class="section about-body">
+        <p class="section-label">People</p>
+        <ul class="people-list">
+          <li>Founder — placeholder</li>
+          <li>Design Director — placeholder</li>
+          <li>Engineer — placeholder</li>
+        </ul>
+      </section>
 
-      <h2>Selected clients</h2>
-      <ul class="client-list">
-        <li>Client A</li>
-        <li>Client B</li>
-        <li>Client C</li>
-        <li>Client D</li>
-      </ul>
-    </section>
-  </main>
+      <section class="section about-body">
+        <p class="section-label">Selected clients</p>
+        <ul class="client-list">
+          <li>Client A</li>
+          <li>Client B</li>
+          <li>Client C</li>
+          <li>Client D</li>
+        </ul>
+      </section>
+    </main>
 
-  <footer class="site-footer">
-    <p>&copy; <span id="year">2026</span> Beef Studio. Boston, MA.</p>
-    <p><a href="/contact.html">Get in touch</a></p>
-  </footer>
+    <footer class="site-footer">
+      <p>&copy; <span id="year">2026</span> Beef Studio · Boston, MA</p>
+      <p><a href="/contact.html">Get in touch →</a></p>
+    </footer>
+  </div>
 
-  <script src="js/main.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 </html>

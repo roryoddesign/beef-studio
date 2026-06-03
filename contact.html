@@ -1,67 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — Beef Studio</title>
   <meta name="description" content="Get in touch with Beef Studio.">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('beef-theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="site-nav" aria-label="Primary">
-      <a class="site-logo" href="/">Beef Studio</a>
+  <div class="site">
+    <header class="top">
+      <a class="mark" href="/">Beef Studio</a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">Menu</button>
-      <ul class="nav-list" id="nav-list">
-        <li><a href="/">Home</a></li>
-        <li><a href="/work.html">Work</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/contact.html" aria-current="page">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+      <nav class="nav" id="nav-list" aria-label="Primary">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/work.html">Work</a>
+        <a class="nav-link" href="/about.html">About</a>
+        <a class="nav-link" href="/contact.html" aria-current="page">Contact</a>
+        <button class="toggle" id="theme-toggle" aria-label="Toggle light and dark mode" aria-pressed="false">
+          <span class="toggle-knob"></span>
+        </button>
+      </nav>
+    </header>
 
-  <main class="site-main">
-    <section class="page-intro">
-      <h1>Contact</h1>
-      <p class="lede">Tell us about your project. We read everything and reply within a few days.</p>
-    </section>
+    <main>
+      <section class="page-intro">
+        <h1><span class="grad-text">Contact</span></h1>
+        <p class="lede">Tell us about your project. We read everything and reply within a few days.</p>
+      </section>
 
-    <section class="contact-body">
-      <h2>Email</h2>
-      <p><a href="mailto:hello@beefstudio.example">hello@beefstudio.example</a></p>
+      <hr class="grad-rule">
 
-      <h2>Studio</h2>
-      <address>
-        Placeholder Street<br>
-        Boston, MA 02XXX<br>
-        United States
-      </address>
+      <section class="section about-body">
+        <p class="section-label">Email</p>
+        <p><a href="mailto:hello@beefstudio.example">hello@beefstudio.example</a></p>
 
-      <h2>Send a note</h2>
-      <form class="contact-form" action="#" method="post" novalidate>
-        <label>
-          Your name
-          <input type="text" name="name" autocomplete="name" required>
-        </label>
-        <label>
-          Email
-          <input type="email" name="email" autocomplete="email" required>
-        </label>
-        <label>
-          Message
-          <textarea name="message" rows="6" required></textarea>
-        </label>
-        <button type="submit">Send</button>
-      </form>
-    </section>
-  </main>
+        <p class="section-label" style="margin-top:32px">Studio</p>
+        <address>
+          Placeholder Street<br>
+          Boston, MA 02XXX<br>
+          United States
+        </address>
 
-  <footer class="site-footer">
-    <p>&copy; <span id="year">2026</span> Beef Studio. Boston, MA.</p>
-    <p><a href="/contact.html">Get in touch</a></p>
-  </footer>
+        <p class="section-label" style="margin-top:32px">Send a note</p>
+        <form class="contact-form" action="#" method="post" novalidate>
+          <label>
+            Your name
+            <input type="text" name="name" autocomplete="name" required>
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows="6" required></textarea>
+          </label>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </main>
 
-  <script src="js/main.js"></script>
+    <footer class="site-footer">
+      <p>&copy; <span id="year">2026</span> Beef Studio · Boston, MA</p>
+      <p><a href="/contact.html">Get in touch →</a></p>
+    </footer>
+  </div>
+
+  <script src="/js/main.js"></script>
 </body>
 </html>
