@@ -38,21 +38,42 @@ img { max-width: 100%; display: block; }
 
   --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
 
-  /* RGB gradient stops — same in both themes */
+  /* Full-spectrum rainbow — same in both themes.
+     Interpolated in OKLCH for perceptually smooth, even-luminance blends.
+     Last stop loops back to the first so panning animation is seamless. */
   --rgb-r: #ff2d2d;
-  --rgb-g: #29d36b;
+  --rgb-o: #ff8a1a;
+  --rgb-y: #ffd400;
+  --rgb-g: #2bd36b;
+  --rgb-c: #1ed5d5;
   --rgb-b: #2d6bff;
+  --rgb-v: #8a2dff;
+  --rgb-m: #ff2db4;
+
   --gradient-rgb: linear-gradient(
-    90deg,
-    var(--rgb-r) 0%,
-    var(--rgb-g) 50%,
-    var(--rgb-b) 100%
+    90deg in oklch,
+    var(--rgb-r)  0%,
+    var(--rgb-o)  12.5%,
+    var(--rgb-y)  25%,
+    var(--rgb-g)  37.5%,
+    var(--rgb-c)  50%,
+    var(--rgb-b)  62.5%,
+    var(--rgb-v)  75%,
+    var(--rgb-m)  87.5%,
+    var(--rgb-r)  100%
   );
+
   --gradient-rgb-soft: linear-gradient(
-    135deg,
-    rgba(255, 45, 45, 0.85) 0%,
-    rgba(41, 211, 107, 0.85) 50%,
-    rgba(45, 107, 255, 0.85) 100%
+    135deg in oklch,
+    rgba(255,  45,  45, 0.85)  0%,
+    rgba(255, 138,  26, 0.85)  12.5%,
+    rgba(255, 212,   0, 0.85)  25%,
+    rgba( 43, 211, 107, 0.85)  37.5%,
+    rgba( 30, 213, 213, 0.85)  50%,
+    rgba( 45, 107, 255, 0.85)  62.5%,
+    rgba(138,  45, 255, 0.85)  75%,
+    rgba(255,  45, 180, 0.85)  87.5%,
+    rgba(255,  45,  45, 0.85)  100%
   );
 }
 
