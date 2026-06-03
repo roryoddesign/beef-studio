@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Beef Studio</title>
+  <meta name="description" content="Get in touch with Beef Studio.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Primary">
+      <a class="site-logo" href="/">Beef Studio</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">Menu</button>
+      <ul class="nav-list" id="nav-list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/work.html">Work</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <section class="page-intro">
+      <h1>Contact</h1>
+      <p class="lede">Tell us about your project. We read everything and reply within a few days.</p>
+    </section>
+
+    <section class="contact-body">
+      <h2>Email</h2>
+      <p><a href="mailto:hello@beefstudio.example">hello@beefstudio.example</a></p>
+
+      <h2>Studio</h2>
+      <address>
+        Placeholder Street<br>
+        Boston, MA 02XXX<br>
+        United States
+      </address>
+
+      <h2>Send a note</h2>
+      <form class="contact-form" action="#" method="post" novalidate>
+        <label>
+          Your name
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="6" required></textarea>
+        </label>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> Beef Studio. Boston, MA.</p>
+    <p><a href="/contact.html">Get in touch</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
