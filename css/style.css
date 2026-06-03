@@ -144,6 +144,12 @@ img { max-width: 100%; display: block; }
   width: auto;
 }
 
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
 .nav {
   display: flex;
   gap: 28px;
@@ -186,18 +192,71 @@ img { max-width: 100%; display: block; }
 }
 [data-theme="light"] .toggle-knob { transform: translateX(20px); }
 
-/* ---------- Mobile nav toggle ---------- */
-.nav-toggle {
+/* ---------- Hamburger (mobile only) ---------- */
+.hamburger {
   display: none;
-  background: transparent;
-  border: 1px solid currentColor;
-  border-radius: var(--r-sm);
-  padding: 4px 10px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: inherit;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 200;
+}
+.hamburger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: transform 0.22s var(--ease), opacity 0.22s var(--ease);
+  transform-origin: center;
+}
+.hamburger.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ---------- Mobile menu (full-screen overlay) ---------- */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background: var(--bg);
+  z-index: 199;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease), visibility 0s 0.25s;
+  pointer-events: none;
+}
+.mobile-menu.is-open {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.25s var(--ease);
+  pointer-events: auto;
+}
+.mobile-menu .nav-link {
+  font-size: 28px;
+  color: var(--fg);
+}
+.mobile-menu-close {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--fg);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
 }
 
 /* ---------- Hero ---------- */
@@ -1022,7 +1081,7 @@ img { max-width: 100%; display: block; }
 
 @media (hover: hover) and (pointer: fine) {
   html, body { cursor: none; }
-  a, button, [role="button"], .accent, .case-card, .toggle, .nav-toggle,
+  a, button, [role="button"], .accent, .case-card, .case-feature, .toggle, .hamburger,
   summary, label { cursor: none; }
   input, textarea { cursor: text; }
 }
@@ -1030,21 +1089,120 @@ img { max-width: 100%; display: block; }
 /* ---------- Responsive ---------- */
 @media (max-width: 720px) {
   :root { --space-gutter: 22px; }
-  .nav { display: none; }
-  .nav.is-open {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 14px;
-    position: absolute;
-    top: 100%;
-    right: 8px;
-    padding: 16px 18px;
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    border-radius: var(--r-sm);
-    mix-blend-mode: normal;
+  .site { padding-top: 20px; padding-bottom: 56px; }
+
+  /* 3-column mobile header: hamburger | logo | toggle */
+  .top {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0;
+    padding: 20px 4px 14px;
+    margin-top: -20px;
   }
-  .nav-toggle { display: inline-block; }
-  .hero { padding: 56px 0 48px; }
+  .hamburger { display: flex; justify-self: start; }
+  .mark { justify-self: center; }
+  .top-right { justify-self: end; gap: 0; }
+  .top-right .nav { display: none; }
+  .mobile-menu { display: flex; }
+
+  /* Hero + statement */
+  .hero { padding: 48px 0 40px; }
+  .hero-logo { width: clamp(220px, 88vw, 720px); }
+  .hero-statement {
+    font-size: clamp(30px, 8vw, 56px);
+    line-height: 1.2;
+    margin: 56px 0 36px;
+    max-width: none;
+  }
+  .hero-cta { font-size: 12px; padding: 12px 18px; }
+
+  /* Case features: stack info below the thumb instead of overlay */
+  .case-features { gap: 28px; }
+  .case-feature { overflow: visible; }
+  .case-feature-thumb { border-radius: var(--r-sm); }
+  .case-feature-info {
+    position: static;
+    background: none;
+    color: var(--fg);
+    opacity: 1;
+    padding: 14px 2px 0;
+  }
+  .case-feature-info .case-meta { color: var(--fg-muted); margin-bottom: 6px; }
+  .case-feature-info h3 {
+    color: var(--fg);
+    font-size: clamp(28px, 8vw, 44px);
+    margin-bottom: 8px;
+  }
+  .case-feature-info .case-blurb {
+    color: var(--fg-muted);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  /* Section spacing */
+  .section { padding: 48px 0; }
+  .section h2 { font-size: clamp(30px, 7vw, 44px); }
+
+  /* About page */
+  .about-label { margin-top: 32px; }
+  .about-heading { font-size: clamp(44px, 12vw, 80px); margin-bottom: 24px; }
+  .about-bio { font-size: 17px; }
+  .about-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 56px;
+  }
+  .about-photo { padding-top: 0; max-width: 320px; }
+  .capability {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 24px 0;
+  }
+  .capability-title { font-size: clamp(24px, 6vw, 32px); }
+  .capability-desc { font-size: 16px; }
+  .about-meta {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 40px;
+    margin-top: 56px;
+  }
+  .about-cta {
+    margin: 64px 0 80px;
+    font-size: clamp(36px, 10vw, 56px);
+  }
+  .capability-tags {
+    padding: 24px 0 32px;
+    column-gap: 24px;
+  }
+  .capability-tags li { font-size: 16px; padding: 4px 0; }
+
+  /* Team */
+  .team-grid { gap: 10px; }
+  .team-info { opacity: 1; transform: none; min-height: 0; }
+  .team-name { font-size: 17px; }
+  .team-bio { font-size: 12px; }
+
+  /* Case study pages */
+  .case-hero { padding: 56px 0 40px; }
+  .case-hero h1 { font-size: clamp(48px, 14vw, 96px); }
+  .case-hero .case-summary { font-size: 19px; }
+  .case-body p { font-size: 16px; }
+  .case-grid { grid-template-columns: 1fr; }
+
+  /* Service list */
+  .service-list li { font-size: clamp(22px, 6vw, 30px); padding: 14px 0; }
+
+  /* Contact */
+  .contact-form input,
+  .contact-form textarea { font-size: 16px; } /* prevents iOS zoom on focus */
+
+  /* Footer */
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 56px;
+    padding-top: 24px;
+  }
 }

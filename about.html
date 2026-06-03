@@ -22,20 +22,32 @@
 <body>
   <div class="site">
     <header class="top">
+      <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <a class="mark" href="/" aria-label="Beef Studio — home">
         <img class="mark-logo" src="/beef_logo/beef_logo.png" alt="">
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">Menu</button>
-      <nav class="nav" id="nav-list" aria-label="Primary">
-        <a class="nav-link" href="/">Home</a>
-        <a class="nav-link" href="/work.html">Work</a>
-        <a class="nav-link" href="/about.html" aria-current="page">About</a>
-        <a class="nav-link" href="/contact.html">Contact</a>
+      <div class="top-right">
+        <nav class="nav" aria-label="Primary">
+          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/work.html">Work</a>
+          <a class="nav-link" href="/about.html" aria-current="page">About</a>
+          <a class="nav-link" href="/contact.html">Contact</a>
+        </nav>
         <button class="toggle" id="theme-toggle" aria-label="Toggle light and dark mode" aria-pressed="false">
           <span class="toggle-knob"></span>
         </button>
-      </nav>
+      </div>
     </header>
+
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close navigation">&#x2715;</button>
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/work.html">Work</a>
+      <a class="nav-link" href="/about.html" aria-current="page">About</a>
+      <a class="nav-link" href="/contact.html">Contact</a>
+    </nav>
 
     <main>
       <p class="about-label">About</p>
