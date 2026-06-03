@@ -318,8 +318,9 @@ img { max-width: 100%; display: block; }
   position: absolute;
   inset: -0.08em 0 -0.04em;
   background-image: var(--accent-grad, var(--gradient-rgb));
-  background-size: 200% 100%;
-  background-position: 0% 50%;
+  background-size: 100vw 100vh;
+  background-position: 0 0;
+  background-attachment: fixed;
   border-radius: 0.1em;
   opacity: 0;
   z-index: -1;
@@ -352,8 +353,10 @@ img { max-width: 100%; display: block; }
   left: 100%;
   width: clamp(240px, 26vw, 320px);
   padding: 16px 20px;
-  background: var(--accent-grad);
-  background-size: 200% 100%;
+  background-image: var(--accent-grad);
+  background-size: 100vw 100vh;
+  background-position: 0 0;
+  background-attachment: fixed;
   border-radius: 0 var(--r-sm) var(--r-sm) var(--r-sm);
   font-family: var(--font-mono);
   font-style: normal;
