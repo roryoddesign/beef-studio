@@ -335,43 +335,38 @@ img { max-width: 100%; display: block; }
   opacity: 1;
 }
 
-.accent--all {
-  --accent-grad: var(--gradient-rgb);
-  --accent-blurb-grad: linear-gradient(135deg in oklch, #1a1a18, #2d6bff);
-}
-.accent--r {
-  --accent-grad: linear-gradient(90deg in oklch, #ff2d2d, #ff8a1a, #ff2db4);
-  --accent-blurb-grad: linear-gradient(135deg in oklch, #064f3f, #2bd36b);
-}
-.accent--g {
-  --accent-grad: linear-gradient(90deg in oklch, #2bd36b, #1ed5d5, #2bd36b);
-  --accent-blurb-grad: linear-gradient(135deg in oklch, #5a0820, #ff2d2d);
-}
-.accent--b {
-  --accent-grad: linear-gradient(90deg in oklch, #2d6bff, #8a2dff, #4ab0ff);
-  --accent-blurb-grad: linear-gradient(135deg in oklch, #5a3500, #ff8a1a);
+.accent--all { --accent-grad: var(--gradient-rgb); }
+.accent--r   { --accent-grad: linear-gradient(90deg in oklch, #ff2d2d, #ff8a1a, #ff2db4); }
+.accent--g   { --accent-grad: linear-gradient(90deg in oklch, #2bd36b, #1ed5d5, #2bd36b); }
+.accent--b   { --accent-grad: linear-gradient(90deg in oklch, #2d6bff, #8a2dff, #4ab0ff); }
+
+/* Corner-attached blurb — top-left meets the block's bottom-right
+   at a single point. Same accent gradient. */
+.accent:has(.accent-blurb)::before {
+  border-radius: 0.1em 0.1em 0 0.1em;
 }
 
-/* Corner-attached blurb that pops out on hover */
 .accent-blurb {
   position: absolute;
-  top: calc(100% - 12px);
-  left: calc(100% - 36px);
-  width: clamp(220px, 28vw, 320px);
-  padding: 14px 18px;
-  background: var(--accent-blurb-grad);
-  border-radius: var(--r-sm);
-  font-family: var(--font-sans);
+  top: 100%;
+  left: 100%;
+  width: clamp(240px, 26vw, 320px);
+  padding: 16px 20px;
+  background: var(--accent-grad);
+  background-size: 200% 100%;
+  border-radius: 0 var(--r-sm) var(--r-sm) var(--r-sm);
+  font-family: var(--font-mono);
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 1.45;
+  font-size: 17px;
+  line-height: 1.4;
   letter-spacing: 0;
   text-transform: none;
   color: #fff;
   -webkit-text-fill-color: #fff;
   -webkit-background-clip: border-box;
           background-clip: border-box;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.35);
   opacity: 0;
   pointer-events: none;
   z-index: 10;
