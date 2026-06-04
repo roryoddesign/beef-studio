@@ -349,8 +349,8 @@ img { max-width: 100%; display: block; }
 
 .accent-blurb {
   position: absolute;
-  top: calc(100% - 0.13em);
-  left: calc(100% - 0.08em);
+  top: calc(100% - 0.25em);
+  left: calc(100% - 0.2em);
   width: clamp(240px, 26vw, 320px);
   padding: 16px 20px;
   background-image: var(--accent-grad);
