@@ -269,20 +269,11 @@ img { max-width: 100%; display: block; }
   line-height: 0;
 }
 
-/* Rainbow gradient clipped to the Beef logo silhouette */
 .hero-logo {
   display: block;
   width: clamp(280px, 80vw, 1100px);
   aspect-ratio: 3851 / 1012;
-  background: var(--gradient-rgb);
-  background-size: 200% 100%;
-  -webkit-mask: url("/beef_logo/beef_logo.png") left center / contain no-repeat;
-          mask: url("/beef_logo/beef_logo.png") left center / contain no-repeat;
-  animation: rgb-pan 14s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-logo { animation: none; }
+  background: url("/beef_logo/beef_logo.png") left center / contain no-repeat;
 }
 
 /* Big colored statement under the logo */
