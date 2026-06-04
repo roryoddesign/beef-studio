@@ -349,8 +349,8 @@ img { max-width: 100%; display: block; }
 
 .accent-blurb {
   position: absolute;
-  top: calc(100% - 0.05em);
-  left: 100%;
+  top: calc(100% - 0.13em);
+  left: calc(100% - 0.08em);
   width: clamp(240px, 26vw, 320px);
   padding: 16px 20px;
   background-image: var(--accent-grad);
@@ -373,7 +373,6 @@ img { max-width: 100%; display: block; }
   opacity: 0;
   pointer-events: none;
   z-index: 10;
-  box-shadow: 0 14px 32px -12px rgba(0,0,0,0.4);
 }
 
 .accent:hover .accent-blurb,
