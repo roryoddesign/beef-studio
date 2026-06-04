@@ -555,7 +555,9 @@ img { max-width: 100%; display: block; }
   color: var(--fg);
   background-color: rgba(127, 127, 127, 0.18);
 }
-.view-toggle button svg { display: block; }
+.view-toggle button svg { display: block; pointer-events: none; }
+
+.section-head--end { justify-content: flex-end; }
 
 /* ---------- Selected work: hero view (default), grid, list ---------- */
 .case-features {
